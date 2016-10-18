@@ -53,6 +53,8 @@ group :development, :test do
   gem 'spring'
 end
 
+gem 'simplecov', :require => false, :group => :test
+
 group :test do
   gem 'rspec-expectations'
   gem 'cucumber-rails', :require=>false

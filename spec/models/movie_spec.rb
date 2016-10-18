@@ -14,4 +14,23 @@ describe Movie do
       end
     end
   end
+   describe 'find movies in Tmdb' do
+      it "should return nil if search_terms is empty" do
+        search_terms = ""
+        expect(Movie.find_in_tmdb(search_terms)).to be_nil
+      end
+      it 'should list of movies from TMDb whose titles include the search term' do
+        Movie.find_in_tmdb("Lethal Weapon").each do |m| 
+          expect(m["title"]).to include("Lethal Weapon")
+        end
+      end
+   end
+   
+   describe 'create movie(s) that has(ve) been selected from tmdb' do
+     it  "should create Movie based of tmdb_id" do
+      tmdb_id=943
+      expect(Movie.create_from_tmdb(tmdb_id)).not_to eq(["G", "PG", "PG-13", "NC-17", "R"])
+      expect(Movie.create_from_tmdb(tmdb_id).title).to eq("Lethal Weapon 3")
+    end
+   end
 end
